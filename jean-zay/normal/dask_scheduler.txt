@@ -1,7 +1,0 @@
-Scheduler monitor started
-Scheduler adaptor started
-trying
-	New worker launched
-	Worker ready
-Scheduler adaptor stopped
-Scheduler monitor stopped
