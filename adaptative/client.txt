@@ -1,0 +1,136 @@
+
+Analytics client connected
+['tcp://127.0.0.1:39985']
+Simulation client connected
+['tcp://127.0.0.1:39985']
+
+memory_stats : 
+{'tcp://127.0.0.1:39985': {'managed_in_memory': 0, 'managed_spilled': 0, 'unmanaged_old': 64692224, 'unmanaged_recent': 0, 'process': 64692224}}
+
+Dimension of array :  adaptative
+Number of timesteps :  40
+Length simulated timestep :  2
+{'tcp://127.0.0.1:39985': {'type': 'Worker', 'id': 'tcp://127.0.0.1:39985', 'host': '127.0.0.1', 'resources': {}, 'local_directory': '/tmp/dask-scratch-space/worker-sh905plc', 'name': 'tcp://127.0.0.1:39985', 'nthreads': 1, 'memory_limit': 4162128896, 'last_seen': 1749652234.3563344, 'services': {'dashboard': 35849}, 'metrics': {'task_counts': {}, 'bandwidth': {'total': 100000000, 'workers': {}, 'types': {}}, 'digests_total_since_heartbeat': {'latency': 0.01809835433959961, 'tick-duration': 0.9811255931854248}, 'managed_bytes': 0, 'spilled_bytes': {'memory': 0, 'disk': 0}, 'transfer': {'incoming_bytes': 0, 'incoming_count': 0, 'incoming_count_total': 0, 'outgoing_bytes': 0, 'outgoing_count': 0, 'outgoing_count_total': 0}, 'event_loop_interval': 0.02, 'cpu': 44.4, 'memory': 85655552, 'time': 1749652233.853496, 'host_net_io': {'read_bps': 7387.598997894369, 'write_bps': 7316.489607630383}, 'host_disk_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'num_fds': 18}, 'status': 'running', 'nanny': 'tcp://127.0.0.1:42631'}}
+
+memory limit :  4162128896
+Task  0  submitted
+Task  1  submitted
+Task  2  submitted
+Task  3  submitted
+Task  4  submitted
+Task  5  submitted
+Task  6  submitted
+Task  7  submitted
+Task  8  submitted
+Task  9  submitted
+Task  10  submitted
+Task  11  submitted
+Task  12  submitted
+Task  13  submitted
+Task  14  submitted
+Task  15  submitted
+Task  16  submitted
+Task  17  submitted
+Task  18  submitted
+Task  19  submitted
+Task  20  submitted
+Task  21  submitted
+Task  22  submitted
+Task  23  submitted
+Task  24  submitted
+Task  25  submitted
+Task  26  submitted
+Task  27  submitted
+Task  28  submitted
+Task  29  submitted
+Task  30  submitted
+Task  31  submitted
+Task  32  submitted
+Task  33  submitted
+Task  34  submitted
+Task  35  submitted
+Task  36  submitted
+Task  37  submitted
+Task  38  submitted
+Task  39  submitted
+
+Matrix for task 0 : size : 1000x1000
+
+Matrix for task 1 : size : 1000x1000
+
+Matrix for task 2 : size : 1000x1000
+
+Matrix for task 3 : size : 1000x1000
+
+Matrix for task 4 : size : 1000x1000
+
+Matrix for task 5 : size : 1000x1000
+
+Matrix for task 6 : size : 1000x1000
+
+Matrix for task 7 : size : 1000x1000
+
+Matrix for task 8 : size : 1000x1000
+
+Matrix for task 9 : size : 1000x1000
+
+Matrix for task 10 : size : 1000x1000
+
+Matrix for task 11 : size : 1000x1000
+
+Matrix for task 12 : size : 2000x2000
+
+Matrix for task 13 : size : 2000x2000
+
+Matrix for task 14 : size : 2000x2000
+
+Matrix for task 15 : size : 3000x3000
+
+Matrix for task 16 : size : 3000x3000
+
+Matrix for task 17 : size : 3000x3000
+
+Matrix for task 18 : size : 4000x4000
+
+Matrix for task 19 : size : 4000x4000
+
+Matrix for task 20 : size : 4000x4000
+
+Matrix for task 21 : size : 5000x5000
+
+Matrix for task 22 : size : 5000x5000
+
+Matrix for task 23 : size : 5000x5000
+
+Matrix for task 24 : size : 6000x6000
+
+Matrix for task 25 : size : 6000x6000
+
+Matrix for task 26 : size : 6000x6000
+
+Matrix for task 27 : size : 7000x7000
+
+Matrix for task 28 : size : 7000x7000
+
+Matrix for task 29 : size : 7000x7000
+
+Matrix for task 30 : size : 8000x8000
+
+Matrix for task 31 : size : 8000x8000
+
+Matrix for task 32 : size : 8000x8000
+
+Matrix for task 33 : size : 9000x9000
+
+Matrix for task 34 : size : 9000x9000
+
+Matrix for task 35 : size : 9000x9000
+
+Matrix for task 36 : size : 10000x10000
+
+Matrix for task 37 : size : 10000x10000
+
+Matrix for task 38 : size : 10000x10000
+
+Matrix for task 39 : size : 11000x11000
+Directory '40_2' created successfully.
