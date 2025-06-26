@@ -1,0 +1,66 @@
+2025-06-26 15:05:21,365 - distributed.nanny - INFO -         Start Nanny at: 'tcp://10.159.5.30:39609'
+2025-06-26 15:05:23,367 - distributed.worker - INFO -       Start worker at:    tcp://10.159.5.30:44181
+2025-06-26 15:05:23,368 - distributed.worker - INFO -          Listening to:    tcp://10.159.5.30:44181
+2025-06-26 15:05:23,368 - distributed.worker - INFO -          dashboard at:          10.159.5.30:44105
+2025-06-26 15:05:23,368 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.5.30:39021
+2025-06-26 15:05:23,368 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 15:05:23,368 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 15:05:23,368 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 15:05:23,368 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-oa0yn95l
+2025-06-26 15:05:23,368 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 15:05:23,386 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 15:05:23,386 - distributed.worker - INFO -         Registered to:    tcp://10.159.5.30:39021
+2025-06-26 15:05:23,386 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 15:05:23,386 - distributed.core - INFO - Starting established connection to tcp://10.159.5.30:39021
+2025-06-26 15:05:25,060 - tornado.application - ERROR - Exception in callback functools.partial(<bound method IOLoop._discard_future_result of <tornado.platform.asyncio.AsyncIOMainLoop object at 0x151fcd245fd0>>, <Task finished name='Task-388' coro=<SpecCluster._correct_state_internal() done, defined at /linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/distributed/deploy/spec.py:352> exception=RuntimeError('Command exited with non-zero exit code.\nExit code: 1\nCommand:\nsbatch /tmp/tmpit0be3jf.sh\nstdout:\n\nstderr:\nsbatch: error: IDRIS: ERROR: --mem, --mem-per-cpu and --mem-per-gpu options should not be used on Jean Zay.\nsbatch: error: IDRIS: ERROR: See http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html.\nsbatch: error: Batch job submission failed: Unspecified error\n\n')>)
+Traceback (most recent call last):
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/tornado/ioloop.py", line 758, in _run_callback
+    ret = callback()
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/tornado/ioloop.py", line 782, in _discard_future_result
+    future.result()
+    ~~~~~~~~~~~~~^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/distributed/deploy/spec.py", line 396, in _correct_state_internal
+    await asyncio.gather(*worker_futs)
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/asyncio/tasks.py", line 737, in _wrap_awaitable
+    return await awaitable
+           ^^^^^^^^^^^^^^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/distributed/deploy/spec.py", line 74, in _
+    await self.start()
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/dask_jobqueue/core.py", line 426, in start
+    out = await self._submit_job(fn)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/dask_jobqueue/core.py", line 409, in _submit_job
+    return await self._call(shlex.split(self.submit_command) + [script_filename])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/dask_jobqueue/core.py", line 514, in _call
+    raise RuntimeError(
+    ...<5 lines>...
+    )
+RuntimeError: Command exited with non-zero exit code.
+Exit code: 1
+Command:
+sbatch /tmp/tmpit0be3jf.sh
+stdout:
+
+stderr:
+sbatch: error: IDRIS: ERROR: --mem, --mem-per-cpu and --mem-per-gpu options should not be used on Jean Zay.
+sbatch: error: IDRIS: ERROR: See http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html.
+sbatch: error: Batch job submission failed: Unspecified error
+
+
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+slurmstepd: error: *** STEP 597361.2 ON r2i5n33 CANCELLED AT 2025-06-26T15:05:39 ***
+slurmstepd: error: *** STEP 597361.3 ON r2i5n33 CANCELLED AT 2025-06-26T15:05:39 ***
+slurmstepd: error: *** STEP 597361.1 ON r2i5n33 CANCELLED AT 2025-06-26T15:05:39 ***
+slurmstepd: error: *** STEP 597361.0 ON r2i5n33 CANCELLED AT 2025-06-26T15:05:39 ***
+2025-06-26 15:05:39,429 - distributed._signals - INFO - Received signal SIGTERM (15)
+slurmstepd: error: *** JOB 597361 ON r2i5n33 CANCELLED AT 2025-06-26T15:05:39 ***
+2025-06-26 15:05:39,429 - distributed.nanny - INFO - Closing Nanny at 'tcp://10.159.5.30:39609'. Reason: signal-15
+2025-06-26 15:05:39,429 - distributed.nanny - INFO - Nanny asking worker to close. Reason: signal-15
+2025-06-26 15:05:39,430 - distributed.worker - INFO - Stopping worker at tcp://10.159.5.30:44181. Reason: signal-15
+2025-06-26 15:05:39,430 - distributed.worker - INFO - Removing Worker plugin shuffle
+2025-06-26 15:05:39,432 - distributed.core - INFO - Connection to tcp://10.159.5.30:39021 has been closed.
+2025-06-26 15:05:39,455 - distributed.nanny - INFO - Worker closed

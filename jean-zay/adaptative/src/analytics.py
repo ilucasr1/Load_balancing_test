@@ -15,33 +15,53 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
 
+def func(mat, it):
+    for i in range(10):
+        mat = mat+mat
+        mat = mat/2
+    return mat
+
+def finalize_plot():
+    plt.gcf().autofmt_xdate(rotation=90)
+    ax = plt.gca()
+    ax.xaxis.set_major_locator(mdates.SecondLocator(interval=4))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M:%S'))
+    plt.legend()
+
+
 if __name__ == "__main__":
 	
     scheduler_addr= str(sys.argv[1])
-    client = client_start(10)
+    nt = int(sys.argv[2])
+    t = int(sys.argv[3])
 
+    n = "adaptative"
+
+    print("scheduler address in analytics : " + str(scheduler_addr), flush=True)
+    client = client_start(scheduler_addr, max_try=10)
+
+    print("\nAnalytics client started", flush=True)
 
 #    while not "workers" in client.scheduler_info(n_workers=-1).keys():
 #        print("Analytics : no workers yet", flush=True)
 
-    #workers = list(client.scheduler_info(n_workers=-1)["workers"].keys())
-    #while (len(workers) != int(nb_workers)):
-    #    time.sleep(1)
-    #    workers = list(client.scheduler_info(n_workers=-1)["workers"].keys())
-    print('\nAnalytics client connected')
-    print(workers, flush=True)
+    workers = list(client.scheduler_info(n_workers=-1)["workers"].keys())
+    while (len(workers) == 0):
+        time.sleep(1)
+        workers = list(client.scheduler_info(n_workers=-1)["workers"].keys())
+#    print(workers, flush=True)
 
     memory_stats = client.run_on_scheduler(memory_info)
     print("\nmemory_stats : \n" + str(memory_stats))
 
-    try:
-        shared_data = Variable("shared").get(timeout=10)
-    except Exception as e:
-        shared_data = Variable("shared").get(timeout=10)
+#    try:
+#        shared_data = Variable("shared").get(timeout=10)
+#    except Exception as e:
+#        shared_data = Variable("shared").get(timeout=10)
 
-    n, nt, t = shared_data
+#    n, nt, t = shared_data
 
-    print("\nDimension of array : ", str(n))
+#    print("\nDimension of array : ", str(n))
     print("Number of timesteps : ", str(nt))
     print("Length simulated timestep : ",  str(t))
 
@@ -88,10 +108,8 @@ if __name__ == "__main__":
 
  #   client.run_on_scheduler(stop_adaptor)
 
-    monitor_data = client.run_on_scheduler(get_monitor_results)
-    times, event_loop_intervals, memory_lists = monitor_data["times"], \
-                                                monitor_data["event_loop_intervals"], \
-                                                monitor_data["memory_lists"]
+    memory_samples = client.run_on_scheduler(get_monitor_results)
+
     client.run_on_scheduler(stop_monitor)
 
     nworkers = len(list(client.scheduler_info(n_workers=-1)["workers"].keys()))
@@ -99,15 +117,16 @@ if __name__ == "__main__":
     dir_name = str(nt) + "_" + str(t)
 
     try:
-        os.mkdir("../plots/" + dir_name)
+        os.mkdir("plots/" + dir_name)
         print(f"Directory '{dir_name}' created successfully.")
     except FileExistsError:
         print(f"Directory '{dir_name}' already exists.")
 
-    os.system("rm -rf ../plots/" + dir_name + "/*")
+    os.system("rm -rf plots/" + dir_name + "/*")
 
+    print(f"Directory '{dir_name}' emptied.", flush=True)
 
-    filepath = "../plots/" + dir_name
+    filepath = "plots/" + dir_name
 
     fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(15,10))
     plt.subplots_adjust(hspace=0.5)
@@ -124,42 +143,49 @@ if __name__ == "__main__":
     fig.savefig(plotfile)
     plt.clf()
 
+    print("Memory sampler plots created", flush=True)
 
     #times = [datetime.fromtimestamp(ts).strftime('%H:%M:%S') for ts in times]
-    times = [datetime.fromtimestamp(ts) for ts in times]
-    short_times = []
-    for i in range(nworkers):
-        short_times.append([])
-        short_times[i] = [times[-len(memory_lists[i][0])], times[-1]]
+#    short_times = []
+#    for i in range(nworkers):
+#        short_times.append([])
+#        short_times[i] = [times[-len(memory_lists[i][0])], times[-1]]
     memory_limits=   [memory_limit, memory_limit]
     managed_spill_limit = [0.6*memory_limit, 0.6*memory_limit]
     process_spill_limit = [0.7*memory_limit, 0.7*memory_limit]
     new_worker_limit = [0.55*memory_limit, 0.55*memory_limit]
 
-    plt.plot(times, event_loop_intervals, label="event_loop_interval")
-    finalize_plot()
-    plt.savefig(filepath + "/plot_event_loop_intervals.png")
-    plt.clf()
 
+    memory_labels = ["process", "managed", "unmanaged_old", "unmanaged_recent", "spilled"]
 
-    memory_labels = ["process", "managed", "un_old", "un_recent", "spilled"]
-
-    for i in range(nworkers):
+    for i, (wid, memory_lists) in enumerate(memory_samples.items()):
         name_worker = "worker_" + str(i) 
-        filepath = "../plots/" + dir_name + "/" + name_worker
-
+        filepath = "plots/" + dir_name + "/" + name_worker
+        
         try:
             os.mkdir(filepath)
             print(f"Directory '{name_worker}' created successfully.")
         except FileExistsError:
             print(f"Directory '{name_worker}' already exists.")
+        
+        times = [datetime.fromtimestamp(ts) for ts in memory_lists["times"]]
+        time_bounds = [times[0], times[-1]]
 
-        for j in range(len(memory_lists[i])):
-            plt.plot(times[-len(memory_lists[i][j]):], memory_lists[i][j], label=memory_labels[j])
-        plt.plot(short_times[i], memory_limits, label="max_alloc_mem")
-        plt.plot(short_times[i], managed_spill_limit, label="max_managed_b4_spill")
-        plt.plot(short_times[i], process_spill_limit, label="max_process_b4_spill")
-        plt.plot(short_times[i], new_worker_limit, label="new_worker_limit")
+        print("time bounds : " + str(time_bounds) , flush=True)
+
+        plt.plot(times, memory_lists["event_loop"], label="event_loop_interval")
+        finalize_plot()
+        plt.savefig(filepath + "/plot_event_loop_intervals.png")
+        plt.clf()
+
+        print("Event loop interval plot created", flush=True)
+
+        for j in range(len(memory_labels)):
+            plt.plot(times, memory_lists[memory_labels[j]], label=memory_labels[j])
+        plt.plot(time_bounds, memory_limits, label="max_alloc_mem")
+        plt.plot(time_bounds, managed_spill_limit, label="max_managed_b4_spill")
+        plt.plot(time_bounds, process_spill_limit, label="max_process_b4_spill")
+        plt.plot(time_bounds, new_worker_limit, label="new_worker_limit")
         plt.title("Worker " + str(i))
         
         finalize_plot()
@@ -167,33 +193,33 @@ if __name__ == "__main__":
         plt.clf()
 
 
-        for j in range(len(memory_lists[i])):
-            plt.plot(times[-len(memory_lists[i][j]):], memory_lists[i][j], label=memory_labels[j])
+        for j in range(len(memory_labels)):
+            plt.plot(times, memory_lists[memory_labels[j]], label=memory_labels[j])
             plt.title("Worker " + str(i))
 
             finalize_plot()
             plt.savefig(filepath + "/plot_memory_" + memory_labels[j]  + ".png")
             
-            plt.plot(short_times[i], memory_limits, label="max_alloc_mem")
+            plt.plot(time_bounds, memory_limits, label="max_alloc_mem")
             if memory_labels[j] == "managed":
-                plt.plot(short_times[i], managed_spill_limit, label="max_managed_b4_spill")
-                plt.plot(short_times[i], new_worker_limit, label="new_worker_limit")
+                plt.plot(time_bounds, managed_spill_limit, label="max_managed_b4_spill")
+                plt.plot(time_bounds, new_worker_limit, label="new_worker_limit")
                 finalize_plot()
                 plt.savefig(filepath + "/plot_memory_" + memory_labels[j]  + "_w_lim.png")
             if memory_labels[j] == "process":
-                plt.plot(short_times[i], process_spill_limit, label="max_process_b4_spill")
-                plt.plot(short_times[i], new_worker_limit, label="new_worker_limit")
+                plt.plot(time_bounds, process_spill_limit, label="max_process_b4_spill")
+                plt.plot(time_bounds, new_worker_limit, label="new_worker_limit")
                 finalize_plot()
                 plt.savefig(filepath + "/plot_memory_" + memory_labels[j]  + "_w_lim.png")
             plt.clf()
 
         
         for j in [0, 1, -1]:
-            plt.plot(times[-len(memory_lists[i][j]):], memory_lists[i][j], label=memory_labels[j])
-        plt.plot(short_times[i], memory_limits, label="max_alloc_mem")
-        plt.plot(short_times[i], managed_spill_limit, label="max_managed_b4_spill")
-        plt.plot(short_times[i], process_spill_limit, label="max_process_b4_spill")
-        plt.plot(short_times[i], new_worker_limit, label="new_worker_limit")
+            plt.plot(times, memory_lists[memory_labels[j]], label=memory_labels[j])
+        plt.plot(time_bounds, memory_limits, label="max_alloc_mem")
+        plt.plot(time_bounds, managed_spill_limit, label="max_managed_b4_spill")
+        plt.plot(time_bounds, process_spill_limit, label="max_process_b4_spill")
+        plt.plot(time_bounds, new_worker_limit, label="new_worker_limit")
         plt.title("Worker " + str(i))
         
         finalize_plot()
@@ -201,7 +227,7 @@ if __name__ == "__main__":
         plt.clf()
 
 
-    print("\nFinished\n", flush=True)
+    print("\nAnalysis finished\n", flush=True)
 
     client.close()
 

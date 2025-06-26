@@ -1,0 +1,57 @@
+DASK_WORKERS=
+THREADS_PER_WORKER=1
+cluster init
+address scheduler : tcp://10.159.5.30:39021
+MALLOC_TRIM_THRESHOLD_=0
+scheduler address in simulation : tcp://10.159.5.30:39021
+scheduler address in analytics : tcp://10.159.5.30:39021
+
+Analytics client started
+Scheduler monitor started
+Simulation client started
+
+Matrix for task 0 : size : 1000x1000
+
+memory_stats : 
+{'tcp://10.159.5.30:44181': {'managed_in_memory': 0, 'managed_spilled': 0, 'unmanaged_old': 60293120, 'unmanaged_recent': 0, 'process': 60293120}}
+Number of timesteps :  20
+Length simulated timestep :  1
+{'tcp://10.159.5.30:44181': {'type': 'Worker', 'id': 'tcp://10.159.5.30:44181', 'host': '10.159.5.30', 'resources': {}, 'local_directory': '/lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-oa0yn95l', 'name': 'tcp://10.159.5.30:44181', 'nthreads': 2, 'memory_limit': 2097152000, 'last_seen': 1750943123.384907, 'services': {'dashboard': 44105}, 'metrics': {'task_counts': {}, 'bandwidth': {'total': 100000000, 'workers': {}, 'types': {}}, 'digests_total_since_heartbeat': {}, 'managed_bytes': 0, 'spilled_bytes': {'memory': 0, 'disk': 0}, 'transfer': {'incoming_bytes': 0, 'incoming_count': 0, 'incoming_count_total': 0, 'outgoing_bytes': 0, 'outgoing_count': 0, 'outgoing_count_total': 0}, 'event_loop_interval': 0.02, 'cpu': 0.0, 'memory': 60293120, 'time': 1750943122.5016415, 'host_net_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'host_disk_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'num_fds': 17}, 'status': 'running', 'nanny': 'tcp://10.159.5.30:39609'}}
+
+memory limit :  2097152000
+Task  0  submitted
+
+Matrix for task 1 : size : 1000x1000
+Task  1  submitted
+
+Matrix for task 2 : size : 1000x1000
+Task  2  submitted
+
+Matrix for task 3 : size : 2000x2000
+Task  3  submitted
+
+Matrix for task 4 : size : 2000x2000
+Task  4  submitted
+
+Matrix for task 5 : size : 2000x2000
+Task  5  submitted
+
+Matrix for task 6 : size : 3000x3000
+Task  6  submitted
+
+Matrix for task 7 : size : 3000x3000
+Task  7  submitted
+
+Matrix for task 8 : size : 3000x3000
+Task  8  submitted
+
+Matrix for task 9 : size : 4000x4000
+Task  9  submitted
+
+Matrix for task 10 : size : 4000x4000
+Task  10  submitted
+
+Matrix for task 11 : size : 4000x4000
+Task  11  submitted
+
+Matrix for task 12 : size : 5000x5000

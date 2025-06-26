@@ -1,0 +1,14 @@
+2025-06-26 10:12:25,875 - distributed.nanny - INFO -         Start Nanny at: 'tcp://10.159.0.35:33461'
+2025-06-26 10:12:29,382 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.35:39745
+2025-06-26 10:12:29,382 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.35:39745
+2025-06-26 10:12:29,382 - distributed.worker - INFO -          dashboard at:          10.159.0.35:36323
+2025-06-26 10:12:29,382 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.35:44529
+2025-06-26 10:12:29,382 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:12:29,382 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:12:29,382 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:12:29,382 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-kosycwcj
+2025-06-26 10:12:29,382 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:12:29,399 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:12:29,400 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.35:44529
+2025-06-26 10:12:29,400 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:12:29,400 - distributed.core - INFO - Starting established connection to tcp://10.159.0.35:44529

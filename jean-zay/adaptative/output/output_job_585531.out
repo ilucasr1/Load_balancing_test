@@ -1,0 +1,115 @@
+DASK_WORKERS=
+THREADS_PER_WORKER=1
+cluster init
+address scheduler : tcp://10.159.0.25:43405
+MALLOC_TRIM_THRESHOLD_=0
+scheduler address in simulation : tcp://10.159.0.25:43405
+scheduler address in analytics : tcp://10.159.0.25:43405
+
+Analytics client started
+Scheduler monitor started
+Simulation client started
+
+Matrix for task 0 : size : 1000x1000
+
+memory_stats : 
+{'tcp://10.159.0.25:44211': {'managed_in_memory': 0, 'managed_spilled': 0, 'unmanaged_old': 59637760, 'unmanaged_recent': 0, 'process': 59637760}}
+Number of timesteps :  30
+Length simulated timestep :  2
+{'tcp://10.159.0.25:44211': {'type': 'Worker', 'id': 'tcp://10.159.0.25:44211', 'host': '10.159.0.25', 'resources': {}, 'local_directory': '/lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-jsc3957g', 'name': 'tcp://10.159.0.25:44211', 'nthreads': 2, 'memory_limit': 2097152000, 'last_seen': 1750925674.352902, 'services': {'dashboard': 33185}, 'metrics': {'task_counts': {}, 'bandwidth': {'total': 100000000, 'workers': {}, 'types': {}}, 'digests_total_since_heartbeat': {}, 'managed_bytes': 0, 'spilled_bytes': {'memory': 0, 'disk': 0}, 'transfer': {'incoming_bytes': 0, 'incoming_count': 0, 'incoming_count_total': 0, 'outgoing_bytes': 0, 'outgoing_count': 0, 'outgoing_count_total': 0}, 'event_loop_interval': 0.02, 'cpu': 0.0, 'memory': 59637760, 'time': 1750925673.4166813, 'host_net_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'host_disk_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'num_fds': 17}, 'status': 'running', 'nanny': 'tcp://10.159.0.25:33957'}}
+
+memory limit :  2097152000
+Task  0  submitted
+
+Matrix for task 1 : size : 1000x1000
+Task  1  submitted
+
+Matrix for task 2 : size : 1000x1000
+Task  2  submitted
+
+Matrix for task 3 : size : 2000x2000
+Task  3  submitted
+
+Matrix for task 4 : size : 2000x2000
+Task  4  submitted
+
+Matrix for task 5 : size : 2000x2000
+Task  5  submitted
+
+Matrix for task 6 : size : 3000x3000
+Task  6  submitted
+
+Matrix for task 7 : size : 3000x3000
+Task  7  submitted
+
+Matrix for task 8 : size : 3000x3000
+Task  8  submitted
+
+Matrix for task 9 : size : 4000x4000
+Task  9  submitted
+
+Matrix for task 10 : size : 4000x4000
+Task  10  submitted
+
+Matrix for task 11 : size : 4000x4000
+Task  11  submitted
+
+Matrix for task 12 : size : 5000x5000
+Task  12  submitted
+
+Matrix for task 13 : size : 5000x5000
+Task  13  submitted
+
+Matrix for task 14 : size : 5000x5000
+Task  14  submitted
+
+Matrix for task 15 : size : 7000x7000
+Task  15  submitted
+
+Matrix for task 16 : size : 7000x7000
+Task  16  submitted
+
+Matrix for task 17 : size : 7000x7000
+Task  17  submitted
+
+Matrix for task 18 : size : 8000x8000
+Task  18  submitted
+
+Matrix for task 19 : size : 8000x8000
+Task  19  submitted
+
+Matrix for task 20 : size : 8000x8000
+Task  20  submitted
+
+Matrix for task 21 : size : 9000x9000
+Task  21  submitted
+
+Matrix for task 22 : size : 9000x9000
+Task  22  submitted
+
+Matrix for task 23 : size : 9000x9000
+Task  23  submitted
+
+Matrix for task 24 : size : 10000x10000
+Task  24  submitted
+
+Matrix for task 25 : size : 10000x10000
+Task  25  submitted
+
+Matrix for task 26 : size : 10000x10000
+Task  26  submitted
+
+Matrix for task 27 : size : 5000x5000
+Task  27  submitted
+
+Matrix for task 28 : size : 5000x5000
+Task  28  submitted
+
+Matrix for task 29 : size : 5000x5000
+Task  29  submitted
+Simulation finished
+Scheduler monitor stopped
+Directory '30_2' already exists.
+Directory '30_2' emptied.
+Memory sampler plots created
+End of program

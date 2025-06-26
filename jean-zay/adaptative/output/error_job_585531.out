@@ -1,0 +1,154 @@
+2025-06-26 10:14:32,206 - distributed.nanny - INFO -         Start Nanny at: 'tcp://10.159.0.25:33957'
+2025-06-26 10:14:34,322 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:44211
+2025-06-26 10:14:34,322 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:44211
+2025-06-26 10:14:34,322 - distributed.worker - INFO -          dashboard at:          10.159.0.25:33185
+2025-06-26 10:14:34,322 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:14:34,322 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:14:34,322 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:14:34,323 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:14:34,323 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-jsc3957g
+2025-06-26 10:14:34,323 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:14:34,354 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:14:34,354 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:14:34,354 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:14:34,354 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:22,156 - distributed.worker.memory - WARNING - Unmanaged memory use is high. This may indicate a memory leak or the memory may not be released to the OS; see https://distributed.dask.org/en/latest/worker-memory.html#memory-not-released-back-to-the-os for more information. -- Unmanaged memory: 1.41 GiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:24,538 - distributed.worker.memory - WARNING - Worker is at 83% memory usage. Pausing worker.  Process memory: 1.64 GiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:24,555 - distributed.worker.memory - WARNING - Worker is at 38% memory usage. Resuming worker. Process memory: 779.95 MiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:28,188 - distributed.worker.memory - WARNING - Worker is at 85% memory usage. Pausing worker.  Process memory: 1.68 GiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:28,256 - distributed.worker.memory - WARNING - Worker is at 21% memory usage. Resuming worker. Process memory: 423.56 MiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:33,281 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:44211 (pid=345461) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:33,299 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:44211' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-be365490d766ac129ce850a5b44e7fb4'} (stimulus_id='handle-worker-cleanup-1750925733.2993617')
+2025-06-26 10:15:33,300 - distributed.nanny - INFO - Worker process 345461 was killed by signal 15
+2025-06-26 10:15:33,316 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:35,359 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:37239
+2025-06-26 10:15:35,359 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:37239
+2025-06-26 10:15:35,359 - distributed.worker - INFO -          dashboard at:          10.159.0.25:34671
+2025-06-26 10:15:35,359 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:35,359 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:35,359 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:35,359 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:35,359 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-japeu0n0
+2025-06-26 10:15:35,359 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:35,377 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:35,377 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:35,377 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:35,378 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:37,581 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:37239 (pid=345709) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:37,595 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:37239' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-acad544cdb686d30bce628c65efa7bae'} (stimulus_id='handle-worker-cleanup-1750925737.5950134')
+2025-06-26 10:15:37,595 - distributed.nanny - INFO - Worker process 345709 was killed by signal 15
+2025-06-26 10:15:37,617 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:39,671 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:45945
+2025-06-26 10:15:39,672 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:45945
+2025-06-26 10:15:39,672 - distributed.worker - INFO -          dashboard at:          10.159.0.25:37911
+2025-06-26 10:15:39,672 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:39,672 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:39,672 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:39,672 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:39,672 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-aje0duf1
+2025-06-26 10:15:39,672 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:39,690 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:39,691 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:39,691 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:39,691 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:40,699 - distributed.worker.memory - WARNING - Worker is at 80% memory usage. Pausing worker.  Process memory: 1.58 GiB -- Worker memory limit: 1.95 GiB
+2025-06-26 10:15:41,382 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:45945 (pid=345748) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:41,403 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:45945' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-736bc5afd5d49e40de756ee57a30d3f9'} (stimulus_id='handle-worker-cleanup-1750925741.403117')
+2025-06-26 10:15:41,404 - distributed.nanny - INFO - Worker process 345748 was killed by signal 15
+2025-06-26 10:15:41,425 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:43,506 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:38411
+2025-06-26 10:15:43,506 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:38411
+2025-06-26 10:15:43,506 - distributed.worker - INFO -          dashboard at:          10.159.0.25:36671
+2025-06-26 10:15:43,506 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:43,507 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:43,507 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:43,507 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:43,507 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-61ou6igs
+2025-06-26 10:15:43,507 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:43,524 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:43,525 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:43,525 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:43,525 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:45,486 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:38411 (pid=345775) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:45,830 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:38411' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-635fc15a09d5550e6aaf2864c647f66c'} (stimulus_id='handle-worker-cleanup-1750925745.830644')
+2025-06-26 10:15:45,831 - distributed.nanny - INFO - Worker process 345775 was killed by signal 15
+2025-06-26 10:15:45,841 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:47,999 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:35273
+2025-06-26 10:15:47,999 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:35273
+2025-06-26 10:15:47,999 - distributed.worker - INFO -          dashboard at:          10.159.0.25:39159
+2025-06-26 10:15:47,999 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:47,999 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:47,999 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:47,999 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:47,999 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-gg6ewr79
+2025-06-26 10:15:47,999 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:48,021 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:48,022 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:48,022 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:48,022 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:50,481 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:35273 (pid=345810) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:50,501 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:35273' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-03b6ea32d42ddea017b65a59c6b798ae'} (stimulus_id='handle-worker-cleanup-1750925750.5009263')
+2025-06-26 10:15:50,501 - distributed.nanny - INFO - Worker process 345810 was killed by signal 15
+2025-06-26 10:15:50,512 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:52,874 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:43601
+2025-06-26 10:15:52,875 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:43601
+2025-06-26 10:15:52,875 - distributed.worker - INFO -          dashboard at:          10.159.0.25:43327
+2025-06-26 10:15:52,875 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:52,875 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:52,875 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:52,875 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:52,875 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-ay18v25a
+2025-06-26 10:15:52,875 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:52,892 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:52,893 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:52,893 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:52,893 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+2025-06-26 10:15:55,336 - distributed.nanny.memory - WARNING - Worker tcp://10.159.0.25:43601 (pid=345848) exceeded 95% memory budget. Restarting...
+2025-06-26 10:15:55,355 - distributed.scheduler - ERROR - Removing worker 'tcp://10.159.0.25:43601' caused the cluster to lose scattered data, which can't be recovered: {'ndarray-79dd14d9b63f4553159cb0d34d7b5b45'} (stimulus_id='handle-worker-cleanup-1750925755.355304')
+2025-06-26 10:15:55,356 - distributed.nanny - INFO - Worker process 345848 was killed by signal 9
+2025-06-26 10:15:55,900 - distributed.nanny - WARNING - Restarting worker
+2025-06-26 10:15:59,234 - distributed.worker - INFO -       Start worker at:    tcp://10.159.0.25:37837
+2025-06-26 10:15:59,234 - distributed.worker - INFO -          Listening to:    tcp://10.159.0.25:37837
+2025-06-26 10:15:59,234 - distributed.worker - INFO -          dashboard at:          10.159.0.25:46603
+2025-06-26 10:15:59,234 - distributed.worker - INFO - Waiting to connect to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:59,235 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:59,235 - distributed.worker - INFO -               Threads:                          2
+2025-06-26 10:15:59,235 - distributed.worker - INFO -                Memory:                   1.95 GiB
+2025-06-26 10:15:59,235 - distributed.worker - INFO -       Local Directory: /lustre/fsn1/projects/rech/jyd/uxd79mv/dask_worker/dask-scratch-space/worker-uiouxwc8
+2025-06-26 10:15:59,235 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:59,250 - distributed.worker - INFO - Starting Worker plugin shuffle
+2025-06-26 10:15:59,251 - distributed.worker - INFO -         Registered to:    tcp://10.159.0.25:43405
+2025-06-26 10:15:59,251 - distributed.worker - INFO - -------------------------------------------------
+2025-06-26 10:15:59,251 - distributed.core - INFO - Starting established connection to tcp://10.159.0.25:43405
+Traceback (most recent call last):
+  File "/lustre/fswork/projects/rech/jyd/uxd79mv/overload_test/adaptative/src/analytics.py", line 161, in <module>
+    plt.plot(times, event_loop_intervals, label="event_loop_interval")
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/matplotlib/pyplot.py", line 3838, in plot
+    return gca().plot(
+           ~~~~~~~~~~^
+        *args,
+        ^^^^^^
+    ...<3 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/matplotlib/axes/_axes.py", line 1777, in plot
+    lines = [*self._get_lines(self, *args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/matplotlib/axes/_base.py", line 297, in __call__
+    yield from self._plot_args(
+               ~~~~~~~~~~~~~~~^
+        axes, this, kwargs, ambiguous_fmt_datakey=ambiguous_fmt_datakey,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        return_kwargs=return_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/linkhome/rech/genmdl01/uxd79mv/.conda/envs/jupyter/lib/python3.13/site-packages/matplotlib/axes/_base.py", line 494, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+                     f"have shapes {x.shape} and {y.shape}")
+ValueError: x and y must have same first dimension, but have shapes (9606,) and (8205,)
+srun: error: r1i0n10: task 0: Exited with exit code 1
+srun: Terminating StepId=585531.2

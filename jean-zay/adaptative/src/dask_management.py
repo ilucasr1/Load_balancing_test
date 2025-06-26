@@ -1,19 +1,18 @@
-import stdlib
 import os
 import sys
 import time
 import dask
 from distributed  import Client
 
-def client_start(max_try=5):
-    tries = 0
+def client_start(scheduler_addr, max_try=5, current_try=0):
     try:
         client = Client(scheduler_addr)
     except Exception as e:
-        tries += 1
+        current_try += 1
         if tries < max_try:
             print("retrying ...", flush=True)
-            client_start(max_try)
+            time.sleep(0.1)
+            client_start(scheduler_addr, max_try=max_try, current_try=current_try)
         else:
             print("Didn't manage to start the simulation client", flush=True)
             os.exit(e)
@@ -47,8 +46,9 @@ def scheduler_monitor(dask_scheduler):
     import time
 
     dask_scheduler._event_loop_intervals = []
-    dask_scheduler._memory_samples = [[[], [], [], [], []], [[], [], [], [], []]]
-    dask_scheduler._timestamps = []
+#    dask_scheduler._memory_samples = [[[], [], [], [], []], [[], [], [], [], []]]
+    dask_scheduler._memory_samples = dict()
+#    dask_scheduler._timestamps = []
     dask_scheduler.should_stop_monitor = asyncio.Event()
 
     async def monitor():
@@ -56,25 +56,29 @@ def scheduler_monitor(dask_scheduler):
 
         while not dask_scheduler.should_stop_monitor.is_set():
             try:
-                dask_scheduler._timestamps.append(time.time())
 
-                for i, ws in enumerate(list(dask_scheduler.workers.values())):
-                    if i == 0:
-                        loop_interval = ws.metrics["event_loop_interval"]
-                        dask_scheduler._event_loop_intervals.append(loop_interval)
+                for i, (wid, ws) in enumerate(dask_scheduler.workers.items()):
+                    if wid not in dask_scheduler._memory_samples:
+                        dask_scheduler._memory_samples[wid] = dict()
+                        labels = ["times", "event_loop", "process", "managed", "unmanaged_old", "unmanaged_recent", "spilled"]
+                        for j in range(len(labels)):
+                            dask_scheduler._memory_samples[wid][labels[j]] = []
 
                     mem = ws.memory
-                    dask_scheduler._memory_samples[i][0].append(mem.process)
-                    dask_scheduler._memory_samples[i][1].append(mem.managed)
-                    dask_scheduler._memory_samples[i][2].append(mem.unmanaged_old)
-                    dask_scheduler._memory_samples[i][3].append(mem.unmanaged_recent)
-                    dask_scheduler._memory_samples[i][4].append(mem.spilled)
+                    dask_scheduler._memory_samples[wid]["times"].append(time.time())
+                    dask_scheduler._memory_samples[wid]["event_loop"].append(ws.metrics["event_loop_interval"])
+                    dask_scheduler._memory_samples[wid]["process"].append(mem.process)
+                    dask_scheduler._memory_samples[wid]["managed"].append(mem.managed)
+                    dask_scheduler._memory_samples[wid]["unmanaged_old"].append(mem.unmanaged_old)
+                    dask_scheduler._memory_samples[wid]["unmanaged_recent"].append(mem.unmanaged_recent)
+                    dask_scheduler._memory_samples[wid]["spilled"].append(mem.spilled)
             except Exception as e:
                 dask_scheduler.log_event("monitor", f"Monitoring error: {e}")
             await asyncio.sleep(0.01)
+        
         print("Scheduler monitor stopped", flush=True)
-
     dask_scheduler.loop.add_callback(monitor)
+
 
 def scheduler_adaptor(dask_scheduler):
     import asyncio
@@ -110,11 +114,7 @@ def scheduler_adaptor(dask_scheduler):
     dask_scheduler.loop.add_callback(adaptor)
 
 def get_monitor_results(dask_scheduler):
-    return {
-        "times": dask_scheduler._timestamps,
-        "event_loop_intervals": dask_scheduler._event_loop_intervals,
-        "memory_lists": dask_scheduler._memory_samples,
-    }
+    return dask_scheduler._memory_samples
 
 def stop_monitor(dask_scheduler):
     if hasattr(dask_scheduler, "should_stop_monitor"):
@@ -128,14 +128,3 @@ def stop_adaptor(dask_scheduler):
         return "Adaptor stop signal sent"
     return "No adaptor running"
 
-def get_memory(event_loop_intervals, times, memory_lists):
-    event_loop_intervals.append(client.scheduler_info(n_workers=-1)["workers"][workers[0]]["metrics"]["event_loop_interval"])
-    times.append(time.time())
-
-    memory_stats = client.run_on_scheduler(memory_info)[workers[0]]
-
-    memory_lists[0].append(memory_stats["process"])
-    memory_lists[1].append(memory_stats["managed_in_memory"])
-    memory_lists[2].append(memory_stats["unmanaged_old"])
-    memory_lists[3].append(memory_stats["unmanaged_recent"])
-    memory_lists[4].append(memory_stats["managed_spilled"])

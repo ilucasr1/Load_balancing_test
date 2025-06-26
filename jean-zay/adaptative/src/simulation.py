@@ -13,18 +13,23 @@ scheduler_addr = str(sys.argv[1])
 nt = int(sys.argv[2])
 t = int(sys.argv[3])
 
-#workers = list(client.scheduler_info()["workers"].keys())
-#while (len(workers) == 0):
-#    workers = list(client.scheduler_info()["workers"].keys())
-#    time.sleep(1)
+print("scheduler address in simulation : " + str(scheduler_addr), flush=True)
 
-client = dm.client_start(10)
+client = client_start(scheduler_addr, max_try=10)
 print('Simulation client started')
-print(workers, flush=True)
 
-shared_data = ["adaptative", nt, t]
+workers = list(client.scheduler_info()["workers"].keys())
+while (len(workers) == 0):
+    workers = list(client.scheduler_info()["workers"].keys())
+    time.sleep(1)
 
-Variable("shared").set(shared_data)
+#print(workers, flush=True)
+
+#shared_data = ["adaptative", nt, t]
+
+#Variable("shared").set(shared_data)
+#print("Variable shared", flush=True)
+
 q = Queue("rank-0")
 
 sizes = [1000, 2000, 3000, 4000, 5000, 7000, 8000, 9000, 10000, 5000, 2000]
@@ -49,5 +54,7 @@ for i in range(nt):
 
     q.put(f)
     time.sleep(t)
+
+print("Simulation finished", flush=True)
 
 client.close()

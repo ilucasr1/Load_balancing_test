@@ -4,7 +4,7 @@
 #SBATCH --output=output/output_job_%j.out
 #SBATCH --error=output/error_job_%j.out
 #SBATCH --time=00:05:00
-#SBATCH --ntasks=4
+#SBATCH --ntasks=8
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=cpu_p1
 #SBATCH --account=jyd@cpu
@@ -14,7 +14,7 @@ SCRIPT_DIR=${BASE_DIR}/scripts
 SRC_DIR=${BASE_DIR}/src
 OUTPUT_DIR=${BASE_DIR}/output
 
-DASK_WORKERS=1
+DASK_WORKER_NODES=1
 THREADS_PER_WORKER=1
 
 DEFAULT_NB_TIMESTEPS=10
@@ -64,28 +64,28 @@ if [ -f "${OUTPUT_DIR}/scheduler_addr.txt" ]; then
 fi
 
 #Start SLURMCluster
-srun -N $DASK_WORKERS -n $DASK_WORKERS -c $DASK_WORKERS  python3 ${SRC_DIR}/init_cluster.py &
+srun -N 1 -n 1 -c 1  python3 ${SRC_DIR}/init_cluster.py &
 init_pid=$!
 
 #wait $init_pid
 
-while ! [ -f "scheduler_addr.txt" ]; do
+while ! [ -f "${OUTPUT_DIR}/scheduler_addr.txt" ]; do
 	sleep 0.1
 done
 echo "cluster init"
 
-SCHE_ADDR=$(cat scheduler_addr.txt)
+SCHE_ADDR=$(cat	${OUTPUT_DIR}/scheduler_addr.txt)
 echo "address scheduler : $SCHE_ADDR"
 
 export MALLOC_TRIM_THRESHOLD_=0
 echo "MALLOC_TRIM_THRESHOLD_=$MALLOC_TRIM_THRESHOLD_"
 
 #dask workers
-srun -N $DASK_WORKERS -n $DASK_WORKERS -c $DASK_WORKERS dask worker $SCHE_ADDR --local-directory ${SCRATCH}/dask_worker & # >> ${OUTPUT_DIR}/dask_worker.txt &
-
+srun -N $DASK_WORKER_NODES -n $DASK_WORKER_NODES -c 1 dask worker $SCHE_ADDR --local-directory ${SCRATCH}/dask_worker & # >> ${OUTPUT_DIR}/dask_worker.txt &
+worker_pid=$!
 
 #in situ analytics
-srun -N 1 -n 1 -c 1  python3 ${SRC_DIR}/analytics.py $SCHE_ADDR &
+srun -N 1 -n 1 -c 1 python3 ${SRC_DIR}/analytics.py $SCHE_ADDR $NB_TIMESTEPS $TIMESTEPS &
 analytics_pid=$!
 
 #simulation
@@ -95,7 +95,9 @@ simu_pid=$!
 wait $analytics_pid
 wait $simu_pid
 
-kill -2 $init_pid
+echo "End of program"
+
+scancel $init_pid $worker_pid
 
 conda deactivate
 

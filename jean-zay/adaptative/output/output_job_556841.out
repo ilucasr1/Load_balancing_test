@@ -1,0 +1,5 @@
+DASK_WORKERS=1
+THREADS_PER_WORKER=1
+cluster init
+address scheduler : 
+MALLOC_TRIM_THRESHOLD_=0
